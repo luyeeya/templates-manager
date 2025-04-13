@@ -13,7 +13,9 @@ export default () => {
       console.log(`正在创建项目: ${projectName}`);
       const tempDir = await cloneCentralRepo();
 
-      const templatePath = path.join(tempDir, options.template);
+      const template = options.template || projectName;
+      console.log(`tempDir: ${tempDir}, template: ${template}`);
+      const templatePath = path.join(tempDir, template);
       if (!fs.existsSync(templatePath)) {
         console.error(chalk.red(`模板 ${options.template} 不存在`));
         process.exit(1);
